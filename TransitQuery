@@ -1,0 +1,10 @@
+/* Create the table for the data */ 
+CREATE TABLE Public.data(CountyId int, State VarChar(255), County VarChar(255), Driver decimal(10,2), Carpool decimal(10,2), Transit decimal(10,2), Walk decimal(10,2), OtherTransp decimal(10,2), WorkAtHome decimal(10,2));
+/* Select the columns to make sure the headers are correct*/
+SELECT * FROM Public.data;
+/* Import the data into the new table */
+COPY Public.data FROM 'C:\Desktop\County Data.csv' DELIMITER ',' HEADER CSV;
+/*Query data for top 10 transit counties */
+Select * FROM Public.data ORDER BY transit DESC LIMIT 10;
+/* Export query data to text file */
+COPY (Select * FROM Public.data ORDER BY transit DESC LIMIT 10) TO 'C:\Desktop\TransitData.txt' DELIMITER ',' HEADER CSV;
